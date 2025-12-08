@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pothys Muruganantham | Hardware & Network Engineer</title>
+    <meta name="description"
+        content="Portfolio of Pothys Muruganantham, a Hardware and Network Engineer based in Coimbatore, India.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        body: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4f46e5', // Indigo 600
+                        secondary: '#6366f1', // Indigo 500
+                        dark: '#0f172a', // Slate 900
+                        light: '#f8fafc', // Slate 50
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-body overflow-x-hidden selection:bg-indigo-100 selection:text-indigo-700">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+        </div>
+        <div
+            class="absolute top-0 right-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-2xl font-bold font-sans tracking-tighter text-slate-900">
+                    POTHYS<span class="text-indigo-600">.</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home"
+                        class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="#about"
+                        class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">About</a>
+                    <a href="#skills"
+                        class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Skills</a>
+                    <a href="#projects"
+                        class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Projects</a>
+                    <a href="#contact"
+                        class="px-5 py-2.5 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-500/30">Contact
+                        Me</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-slate-900 focus:outline-none" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white/95 backdrop-blur-md absolute w-full border-b border-slate-100"
+            id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home"
+                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-50 rounded-md">Home</a>
+                <a href="#about"
+                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-50 rounded-md">About</a>
+                <a href="#skills"
+                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-50 rounded-md">Skills</a>
+                <a href="#projects"
+                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-50 rounded-md">Projects</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-indigo-600 font-bold">Contact
+                    Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div
+                        class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-sm font-medium mb-6">
+                        <span class="flex h-2 w-2 rounded-full bg-indigo-600 mr-2 animate-pulse"></span>
+                        Available for work
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold font-sans text-slate-900 leading-tight mb-6">
+                        Building the <br>
+                        <span class="text-gradient">Digital Future.</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+                        I'm <span class="font-semibold text-slate-900">Pothys Muruganantham</span>, a Hardware & Network
+                        Engineer passionate about optimizing systems and creating robust infrastructure.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects"
+                            class="px-8 py-4 rounded-full bg-slate-900 text-white font-semibold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-500/30 flex items-center gap-2 group">
+                            View Work
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="https://github.com/pothysps" target="_blank"
+                            class="px-8 py-4 rounded-full bg-white text-slate-700 border border-slate-200 font-semibold hover:border-indigo-200 hover:text-indigo-600 transition-all shadow-sm hover:shadow-md flex items-center gap-2">
+                            <i class="fa-brands fa-github text-xl"></i> GitHub
+                        </a>
+                    </div>
+
+                    <div class="mt-12 flex items-center gap-8 text-slate-400">
+                        <div class="flex -space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-xs font-bold text-slate-500">
+                                JS</div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-xs font-bold text-slate-500">
+                                PY</div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-xs font-bold text-slate-500">
+                                DB</div>
+                        </div>
+                        <div class="text-sm font-medium">
+                            <span class="block text-slate-900 font-bold">4+ Repositories</span>
+                            <span class="text-slate-500">Open Source Contributions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative hidden lg:block" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="relative z-10 animate-float">
+                        <div
+                            class="glass-card p-8 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <div class="flex items-center justify-between mb-8">
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="text-xs text-slate-400 font-mono">server-config.sh</div>
+                            </div>
+                            <div class="space-y-3 font-mono text-sm">
+                                <div class="flex gap-4">
+                                    <span class="text-slate-400">1</span>
+                                    <span class="text-purple-600">const</span> <span
+                                        class="text-blue-600">engineer</span> = {
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-slate-400">2</span>
+                                    <span class="pl-4 text-slate-600">name:</span> <span
+                                        class="text-green-600">'Pothys'</span>,
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-slate-400">3</span>
+                                    <span class="pl-4 text-slate-600">role:</span> <span class="text-green-600">'Network
+                                        Engineer'</span>,
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-slate-400">4</span>
+                                    <span class="pl-4 text-slate-600">skills:</span> [<span
+                                        class="text-green-600">'Linux'</span>, <span
+                                        class="text-green-600">'Hardware'</span>],
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-slate-400">5</span>
+                                    <span class="pl-4 text-slate-600">hardWorker:</span> <span
+                                        class="text-orange-500">true</span>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-slate-400">6</span>
+                                    <span class="text-slate-800">}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badges -->
+                        <div class="absolute -top-6 -right-6 glass-card p-4 rounded-2xl shadow-lg animate-bounce"
+                            style="animation-duration: 3s;">
+                            <i class="fa-solid fa-server text-3xl text-indigo-600"></i>
+                        </div>
+                        <div class="absolute -bottom-8 -left-8 glass-card p-4 rounded-2xl shadow-lg animate-bounce"
+                            style="animation-duration: 4s;">
+                            <i class="fa-solid fa-network-wired text-3xl text-pink-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-slate-50 skew-x-12 translate-x-32 -z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-sm font-bold tracking-widest text-indigo-600 uppercase mb-2">About Me</h2>
+                <h3 class="text-3xl md:text-4xl font-bold font-sans text-slate-900">Who is Pothys?</h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="col-span-1 md:col-span-2 space-y-6" data-aos="fade-right">
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        I am a dedicated <strong class="text-indigo-600">Hardware Engineer</strong> based in <strong
+                            class="text-slate-900">Coimbatore, India</strong>. Currently working at <strong
+                            class="text-slate-900">SSM Corporate</strong>, I specialize in desktop maintenance, network
+                        engineering, and system optimization.
+                    </p>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        My journey began at <strong class="text-slate-900">KSG College of Arts and Science</strong>,
+                        where I built a strong foundation in computer science. I combine this theoretical knowledge with
+                        hands-on practical expertise to solve complex hardware and network challenges efficiently.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-indigo-100 hover:shadow-md transition-all">
+                            <div
+                                class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-medium uppercase">Location</p>
+                                <p class="text-slate-900 font-semibold">Coimbatore, India</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-indigo-100 hover:shadow-md transition-all">
+                            <div
+                                class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">
+                                <i class="fa-solid fa-briefcase text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-medium uppercase">Experience</p>
+                                <p class="text-slate-900 font-semibold">SSM Corporate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1" data-aos="fade-left">
+                    <div
+                        class="bg-slate-900 rounded-3xl p-8 text-white h-full flex flex-col justify-between relative overflow-hidden group">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full blur-3xl opacity-20 -mr-16 -mt-16 transition-all group-hover:opacity-40">
+                        </div>
+
+                        <div>
+                            <h4 class="text-2xl font-bold mb-2">Let's Connect</h4>
+                            <p class="text-slate-400 text-sm mb-6">Open for new opportunities and collaborations.</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <a href="https://github.com/pothysps" target="_blank"
+                                class="flex items-center justify-between p-4 rounded-xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm">
+                                <span class="flex items-center gap-3">
+                                    <i class="fa-brands fa-github text-xl"></i>
+                                    <span class="font-medium">GitHub</span>
+                                </span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-50"></i>
+                            </a>
+                            <a href="https://twitter.com/pothysps" target="_blank"
+                                class="flex items-center justify-between p-4 rounded-xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm">
+                                <span class="flex items-center gap-3">
+                                    <i class="fa-brands fa-twitter text-xl"></i>
+                                    <span class="font-medium">Twitter</span>
+                                </span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-50"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-sm font-bold tracking-widest text-indigo-600 uppercase mb-2">My Arsenal</h2>
+                <h3 class="text-3xl md:text-4xl font-bold font-sans text-slate-900">Technical Skills</h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Skill Item -->
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-linux text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Linux</h4>
+                    <p class="text-sm text-slate-500">System Admin</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-yellow-50 flex items-center justify-center text-yellow-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-js text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">JavaScript</h4>
+                    <p class="text-sm text-slate-500">Scripting</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-python text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Python</h4>
+                    <p class="text-sm text-slate-500">Automation</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-git-alt text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Git</h4>
+                    <p class="text-sm text-slate-500">Version Control</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-database text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">MySQL</h4>
+                    <p class="text-sm text-slate-500">Database</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="500">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center text-green-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-node-js text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Node.js</h4>
+                    <p class="text-sm text-slate-500">Backend</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="600">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-cyan-50 flex items-center justify-center text-cyan-500 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-network-wired text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Networking</h4>
+                    <p class="text-sm text-slate-500">Infrastructure</p>
+                </div>
+
+                <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="700">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-microchip text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Hardware</h4>
+                    <p class="text-sm text-slate-500">Maintenance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4" data-aos="fade-up">
+                <div>
+                    <h2 class="text-sm font-bold tracking-widest text-indigo-600 uppercase mb-2">Portfolio</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold font-sans text-slate-900">Featured Projects</h3>
+                </div>
+                <a href="https://github.com/pothysps?tab=repositories" target="_blank"
+                    class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors flex items-center gap-2">
+                    View All Repositories <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <article
+                    class="group relative bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                        <a href="https://github.com/pothysps/webmin" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-slate-900 hover:text-indigo-600 transition-colors">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+
+                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
+                        <div class="absolute top-10 left-10 text-white">
+                            <i class="fa-solid fa-server text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold uppercase tracking-wider">HTML</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider">Server</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
+                            Webmin</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Powerful and flexible web-based server management control panel. A fork enhancing server
+                            administration capabilities for easier management.
+                        </p>
+                        <a href="https://github.com/pothysps/webmin"
+                            class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+                            View Project <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article
+                    class="group relative bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                        <a href="https://github.com/pothysps/Surya-Script-for-Windows" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-slate-900 hover:text-indigo-600 transition-colors">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-cyan-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
+                        <div class="absolute top-10 left-10 text-white">
+                            <i class="fa-brands fa-windows text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider">Batch</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider">Utility</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
+                            Surya Script</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            A comprehensive utility script designed for Windows environment optimization, automation,
+                            and management tasks.
+                        </p>
+                        <a href="https://github.com/pothysps/Surya-Script-for-Windows"
+                            class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+                            View Project <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article
+                    class="group relative bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                        <a href="https://github.com/pothysps/Windows10Debloater_Sycenex" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-slate-900 hover:text-indigo-600 transition-colors">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-900 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                        <div class="absolute top-10 left-10 text-white">
+                            <i class="fa-solid fa-gauge-high text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider">PowerShell</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider">Optimization</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
+                            Win10 Debloater</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Script to remove unnecessary pre-installed applications from Windows 10, significantly
+                            improving system performance and privacy.
+                        </p>
+                        <a href="https://github.com/pothysps/Windows10Debloater_Sycenex"
+                            class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+                            View Project <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900 -z-10"></div>
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div
+                class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob">
+            </div>
+            <div
+                class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
+            <h2 class="text-sm font-bold tracking-widest text-indigo-400 uppercase mb-4">Get in Touch</h2>
+            <h3 class="text-4xl md:text-5xl font-bold font-sans text-white mb-8">Ready to start a project?</h3>
+            <p class="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
+                I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll
+                try my best to get back to you!
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="mailto:contact@example.com"
+                    class="px-8 py-4 rounded-full bg-indigo-600 text-white font-bold hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:-translate-y-1">
+                    Say Hello <i class="fa-solid fa-envelope ml-2"></i>
+                </a>
+                <a href="https://github.com/pothysps" target="_blank"
+                    class="px-8 py-4 rounded-full bg-transparent border border-slate-600 text-white font-bold hover:bg-white/10 hover:border-white transition-all">
+                    Visit GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 border-t border-slate-900">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-slate-400 text-sm">
+                &copy; 2025 Pothys Muruganantham. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-500 hover:text-indigo-400 transition-colors"><i
+                        class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="text-slate-500 hover:text-indigo-400 transition-colors"><i
+                        class="fa-brands fa-twitter text-xl"></i></a>
+                <a href="#" class="text-slate-500 hover:text-indigo-400 transition-colors"><i
+                        class="fa-brands fa-linkedin text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

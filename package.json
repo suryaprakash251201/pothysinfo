@@ -1,0 +1,17 @@
+{
+  "name": "pothysinfo-blog-admin",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "description": "Pothys portfolio blog and admin dashboard with CloudPE S3 backend",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

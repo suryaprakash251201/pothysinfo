@@ -16,6 +16,7 @@ async function initializeBlog() {
     await syncPostsFromApi();
     renderPostsListing();
     updateCategoryFilters();
+    updateResultsSummary(getPublishedPosts().length, 'all');
 }
 
 // ==================== SAMPLE DATA INITIALIZATION ====================
@@ -74,11 +75,17 @@ function initializeSamplePosts() {
 
 async function syncPostsFromApi() {
     const apiBase = getApiBaseUrl();
+    const controller = new AbortController();
+    const timeoutMs = 1800;
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
         const response = await fetch(`${apiBase}/posts`, {
             headers: { 'Accept': 'application/json' },
+            signal: controller.signal,
         });
+
+        clearTimeout(timer);
 
         if (!response.ok) {
             throw new Error(`API request failed with ${response.status}`);
@@ -90,7 +97,13 @@ async function syncPostsFromApi() {
             return;
         }
     } catch (error) {
-        console.warn('Blog API unavailable, using local cache.', error);
+        if (error.name === 'AbortError') {
+            console.warn(`Blog API timed out after ${timeoutMs}ms, using local cache.`);
+        } else {
+            console.warn('Blog API unavailable, using local cache.', error);
+        }
+    } finally {
+        clearTimeout(timer);
     }
 
     if (!localStorage.getItem('blogPosts')) {
@@ -136,12 +149,15 @@ function renderPostsListing() {
 
     if (allPosts.length === 0) {
         grid.innerHTML = '';
+        setNoPostsMessage('No posts found. Check back soon!');
         noPostsMsg.style.display = 'block';
+        updateResultsSummary(0, 'all');
         return;
     }
 
     noPostsMsg.style.display = 'none';
     grid.innerHTML = allPosts.map(post => createPostCard(post)).join('');
+    updateResultsSummary(allPosts.length, 'all');
 
     // Add click handlers to cards
     document.querySelectorAll('.post-card').forEach(card => {
@@ -155,6 +171,7 @@ function createPostCard(post) {
     const categoryColor = getCategoryColor(post.category);
     const cover = post.cover || `linear-gradient(135deg, #4f46e5, #6366f1)`;
     const imageStyle = post.cover ? `background-image: url('${post.cover}')` : `background: ${cover}`;
+    const readingTime = estimateReadingTime(post.content || post.excerpt);
 
     return `
         <div class="post-card" data-post-id="${post.id}">
@@ -169,7 +186,7 @@ function createPostCard(post) {
                     <div class="post-author-avatar">${post.author.charAt(0).toUpperCase()}</div>
                     <div>
                         <div style="font-weight: 600;">${escapeHtml(post.author)}</div>
-                        <div>${post.date}</div>
+                        <div>${post.date} - ${readingTime} min read</div>
                     </div>
                 </div>
             </div>
@@ -234,13 +251,14 @@ function updateShareButtons(post) {
 
     document.getElementById('twitterShareBtn').href = twitterUrl;
 
-    document.getElementById('copyLinkBtn').addEventListener('click', function(e) {
+    const copyBtn = document.getElementById('copyLinkBtn');
+    copyBtn.onclick = function(e) {
         e.preventDefault();
         const url = `${currentUrl}?post=${post.id}`;
         navigator.clipboard.writeText(url).then(() => {
             showNotification('Link copied to clipboard!');
         });
-    }, { once: true });
+    };
 }
 
 // ==================== CATEGORY FILTERS ====================
@@ -279,12 +297,15 @@ function filterPostsByCategory(category) {
 
     if (posts.length === 0) {
         grid.innerHTML = '';
+        setNoPostsMessage(`No posts in ${category}.`);
         noPostsMsg.style.display = 'block';
+        updateResultsSummary(0, category);
         return;
     }
 
     noPostsMsg.style.display = 'none';
     grid.innerHTML = posts.map(post => createPostCard(post)).join('');
+    updateResultsSummary(posts.length, category);
 
     document.querySelectorAll('.post-card').forEach(card => {
         card.addEventListener('click', () => showSinglePostView(card.dataset.postId));
@@ -325,13 +346,15 @@ function performSearch(e) {
 
     if (posts.length === 0) {
         grid.innerHTML = '';
-        noPostsMsg.textContent = query ? 'No posts found matching your search.' : 'No posts found. Check back soon!';
+        setNoPostsMessage(query ? 'No posts found matching your search.' : 'No posts found. Check back soon!');
         noPostsMsg.style.display = 'block';
+        updateResultsSummary(0, 'search');
         return;
     }
 
     noPostsMsg.style.display = 'none';
     grid.innerHTML = posts.map(post => createPostCard(post)).join('');
+    updateResultsSummary(posts.length, query ? 'search' : 'all');
 
     document.querySelectorAll('.post-card').forEach(card => {
         card.addEventListener('click', () => showSinglePostView(card.dataset.postId));
@@ -343,6 +366,7 @@ function performSearch(e) {
 function returnToListing() {
     document.getElementById('singlePostView').style.display = 'none';
     document.getElementById('postsListing').style.display = 'block';
+    updateResultsSummary(getPublishedPosts().length, 'all');
     window.scrollTo(0, 0);
 }
 
@@ -377,11 +401,11 @@ function getCategoryColor(category) {
     const colors = {
         'Technology': '#4f46e5',
         'Design': '#ec4899',
-        'AI': '#f97316',
-        'Dev': '#06b6d4',
-        'Startup': '#22c55e',
-        'Business': '#8b5cf6',
-        'Other': '#64748b'
+        'AI': '#6366f1',
+        'Dev': '#818cf8',
+        'Startup': '#a78bfa',
+        'Business': '#7c3aed',
+        'Other': '#475569'
     };
     return colors[category] || '#6b7280';
 }
@@ -402,6 +426,47 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+function estimateReadingTime(contentHtml) {
+    const plainText = String(contentHtml || '').replace(/<[^>]*>/g, ' ');
+    const words = plainText.trim().split(/\s+/).filter(Boolean).length;
+    if (words === 0) {
+        return 1;
+    }
+    return Math.max(1, Math.round(words / 220));
+}
+
+function updateResultsSummary(count, mode) {
+    const summary = document.getElementById('resultsSummary');
+    if (!summary) {
+        return;
+    }
+
+    if (mode === 'search') {
+        summary.textContent = `${count} result${count === 1 ? '' : 's'} from search`;
+        return;
+    }
+
+    if (mode && mode !== 'all') {
+        summary.textContent = `${count} post${count === 1 ? '' : 's'} in ${mode}`;
+        return;
+    }
+
+    summary.textContent = `${count} published post${count === 1 ? '' : 's'} available`;
+}
+
+function setNoPostsMessage(message) {
+    const noPostsMsg = document.getElementById('noPostsMessage');
+    if (!noPostsMsg) {
+        return;
+    }
+
+    noPostsMsg.innerHTML = `
+        <i data-lucide="inbox"></i>
+        <p>${escapeHtml(message)}</p>
+    `;
+    refreshIcons();
 }
 
 function showNotification(message) {

@@ -1,0 +1,30 @@
+<svg width="960" height="1280" viewBox="0 0 960 1280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="860" y2="1220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="168" y1="112" x2="760" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 980) rotate(90) scale(240 340)">
+      <stop stop-color="#ec4899" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ec4899" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="960" height="1280" fill="url(#bg)"/>
+  <rect width="960" height="1280" fill="url(#glow)"/>
+
+  <rect x="148" y="104" width="664" height="1068" rx="68" stroke="url(#ring)" stroke-width="10" opacity="0.9"/>
+
+  <circle cx="480" cy="460" r="170" fill="#111827"/>
+  <path d="M220 990C220 815 337 720 480 720C623 720 740 815 740 990V1050H220V990Z" fill="#111827"/>
+
+  <circle cx="392" cy="435" r="12" fill="#94a3b8"/>
+  <circle cx="568" cy="435" r="12" fill="#94a3b8"/>
+  <path d="M410 540C450 578 510 578 550 540" stroke="#94a3b8" stroke-width="10" stroke-linecap="round"/>
+
+  <text x="480" y="1120" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="32" font-weight="700">Add photo: assets/images/pothys-portrait.jpg</text>
+</svg>
